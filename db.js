@@ -32,11 +32,12 @@ console.log(aUser === sequelize.models.aUser); //this line just says if a user i
     */
     //instead of instance an obj we can use a shortcurt, the create method
 
-    /*
+    //await aUser.create({ firstName: 'Fernando', lastName: 'Gomes' });
+
     const person = await aUser.create({firstName: 'michael', lastName: 'jackson'});
     const personA = await aUser.create({firstName: 'sandra', lastName: 'rosa madalena'});
-    await personA.reload();
-    */
+
+    //await personA.reload();
 
     /* a simpels select * query
     const everyone = await aUser.findAll();
