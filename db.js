@@ -1,5 +1,6 @@
 require('dotenv').config();
 const {Sequelize, DataTypes, Model, Op} = require('sequelize');
+const { INSERT } = require('sequelize/lib/query-types');
 const sequelize = new Sequelize(process.env.POSTGRES_URL);
 
 /*
@@ -23,7 +24,7 @@ const aUser = sequelize.define(
 console.log(aUser === sequelize.models.aUser); //this line just says if a user is a model
 //the models should be stores in a separate file with all of the models in the real project
 
-(async ()=>{
+async insert(){
 
     //await sequelize.sync({force: true});
 
@@ -51,6 +52,5 @@ console.log(aUser === sequelize.models.aUser); //this line just says if a user i
         }
     });
     console.log(JSON.stringify(everyone, null, 2));
-
 })()
-//module.exports = { };
+module.exports = { insert, select };
