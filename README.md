@@ -12,5 +12,5 @@ Para acessar a home vá para o link localhost:3001;
 
 Vá para a porta 5050 para configurar o banco de dados (precisa estar com o pg admin rodando no computador)
 Login: admin@admin.com Senha: admin
-É necessário adicionar um servidor, para isso insira qualquer nome na aba "geral", na aba "Connection" insira no "Host name/adress": fullstrackapplean-db-1;
+É necessário adicionar um servidor, para isso insira qualquer nome na aba "geral", na aba "Connection" insira no "Host name/adress": quackfarma-main-db-1;
 a porta é 5432; o "Maintance database" e o "Username": postgres; e a senha é 3240.
