@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test-Page</title>
 </head>
 <body>
-    <form action="/insert" method="post"><input type="text" name="nome">
-    <input type="number" name="idade">
-    <button type="submit">ENVIAR</button>
+    <form action="/insert" method="post">
+        <h1>insert</h1><br>
+        <input type="text" name="nome" placeholder="nome"><br>
+        <input type="number" name="idade" placeholder="idade"><br>
+        <button type="submit">Salvar</button>
+    </form><br>
+
+    <form action="/select" method="get">
+        <h1>select</h1><br>
+        <button type="submit">Mostrar salvos</button>
+    </form><br>
+
+    <form action="/update" method="post">
+        <h1>update</h1>
+        <input type="text" name="nome" placeholder="Nome"><br>
+        <input type="text" name="novoNome" placeholder="Novo nome"><br>
+        <input type="number" name="idade" placeholder="idade"><br>
+        <button type="submit">Atualizar</button>
+    </form><br>
+    
+    <form action="/delete" method="post">
+        <input type="text" name="nome" placeholder="Nome para deletar"><br>
+        <button type="submit">Deletar</button>
     </form>
 </body>
 </html>
