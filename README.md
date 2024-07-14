@@ -6,8 +6,8 @@ Aba o terminal na pasta e rode um dos seguintes
 No windows talvez precise usar o com --build
 E no linux, dependendo da configuração, coloque o sudo antes :) 
     
-O docker ira dar pull nas imagens e iniciar 3 containers
-servidor, postgres e pgadmin
+O docker ira dar pull nas imagens e iniciar 2 containers
+servidor e postgres.
 Espere todos os 3 estaram prontos, observe se entre tudo que aparece no terminal apareceu:
     db-1       | 2024-07-14 18:19:29.883 UTC [1] LOG:  database system is ready to accept connections
     web-1      | Servidor rodando em http://0.0.0.0:3000
