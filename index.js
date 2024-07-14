@@ -1,26 +1,30 @@
+//basic
 require('dotenv').config();
-const { Pool } = require('pg');
-const express = require('express');
 const path = require('path');
 
+//express config
+const express = require('express');
 const app = express();
+const HOST = '0.0.0.0';
+const PORT = 3000;
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+//db config, connect to postgres
+const { Pool } = require('pg');
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+//basic test routes
 app.get('/', async (req, res) => {
     try {
         await pool.query('CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, nome VARCHAR(100), idade INT)');
         res.sendFile(path.join(__dirname, 'public', 'teste.html'));
     } catch (error) {
-        console.error('Erro ao criar tabela:', error.message);
-        res.status(500).send('Erro ao criar tabela: ' + error.message);
+        console.error('Erro na rota /:', error.message);
+        res.status(500).send('Erro ao criar tabela. Veirfique o log');
     }
 });
 
@@ -30,23 +34,45 @@ app.post('/insert', async (req, res) => {
         await pool.query('INSERT INTO users (nome, idade) VALUES ($1, $2)', [nome, idade]);
         res.send('Usuário criado com sucesso!');
     } catch (error) {
-        console.error('Erro ao criar usuário:', error.message);
-        res.status(500).send('Erro ao criar usuário: ' + error.message);
+        console.error('Erro na rota /insert:', error.message);
+        res.status(500).send('Erro ao criar usuário. Veirfique o log');
     }
 });
 
-app.get('/user', async (req, res) => {
+app.get('/select', async (req, res) => {
     try {
         const resposta = await pool.query('SELECT * FROM users');
-        res.json(resposta.rows);  // Assegure-se de usar 'rows' para obter todas as linhas da resposta
+        res.json(resposta.rows); 
     } catch (error) {
-        console.error('Erro ao buscar usuários:', error.message);
-        res.status(500).send('Erro ao buscar usuários: ' + error.message);
+        console.error('Erro na rota /select:', error.message);
+        res.status(500).send('Erro ao buscar usuários. Veirfique o log');
     }
 });
 
-const porta = 3000;
+app.post('/update', async (req, res) => {
+    const { nome, novoNome, idade } = req.body;
+    try {
+        await pool.query('UPDATE users SET nome = $1, idade = $2 WHERE nome = $3', [novoNome, idade, nome]);
+        res.send('Usuário atualizado com sucesso!');
+    } catch (error) {
+        console.error('Erro na rota /update:', error.message);
+        res.status(500).send('Erro ao atualizar usuário. Veirfique o log');
+    }
+});
 
-app.listen(porta, '0.0.0.0', () => {
-    console.log(`Servidor rodando em http://0.0.0.0:${porta}`);
+
+app.post('/delete', async (req, res) => {
+    const { nome } = req.body;
+    try {
+        await pool.query('DELETE FROM users WHERE nome = $1', [nome]);
+        res.send('Usuário deletado com sucesso!');
+    } catch (error) {
+        console.error('Erro na rota /delete:', error.message);
+        res.status(500).send('Erro ao deletar usuário. Veirfique o log');
+    }
+});
+
+//ouvirodira
+app.listen(PORT, HOST, () => {
+    console.log(`Ta ligado ta na mega, sintonize http://${HOST}:${PORT}`);
 });
