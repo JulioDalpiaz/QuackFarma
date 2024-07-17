@@ -1,22 +1,22 @@
 {
   "name": "learningstuff",
   "version": "1.0.0",
-  "description": "\"just learnign some postgreswl, vue, and other stuff for another project\"",
+  "description": "\"A project for a selection process.\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "author": "boldan",
+  "author": "boldan-dalpiaz",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
     "pg-promise": "^11.9.0",
-    "sequelize": "^6.37.3",
     "vuetify": "^3.6.12"
   }
 }

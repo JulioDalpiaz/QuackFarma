@@ -4,6 +4,9 @@ services:
   web:
     build: .
     command: npm start
+    volumes: 
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3001:3000"
     environment:
