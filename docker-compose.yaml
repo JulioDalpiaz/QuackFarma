@@ -17,6 +17,7 @@ services:
       context: .
     volumes: 
       - .:/megaprojeto/server
+      - /megaprojeto/server/node_modules
     expose:
       - 3000
     ports:

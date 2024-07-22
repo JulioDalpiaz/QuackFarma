@@ -20,7 +20,7 @@ const dbPool = require('./dbConnection');
 //basic test routes
 app.get('/', async (req, res) => {
     try {
-        await dbPool.query('CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, nome VARCHAR(100), idade INT)');
+        await dbPool.query('CREATE TABLE IF NOT EXISTS testes (id SERIAL PRIMARY KEY, nome VARCHAR(100), idade INT)');
         res.sendFile(path.join(__dirname, 'public', 'teste.html'));
     } catch (error) {
         console.error('Erro na rota /:', error.message);
