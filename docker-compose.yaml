@@ -25,3 +25,6 @@ services:
       - POSTGRES_URL=postgres://megauser:3240@db:5432/megadb
     depends_on:
       - db
+
+volumes:
+  postgres_data:

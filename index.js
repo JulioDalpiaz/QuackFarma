@@ -10,11 +10,11 @@ const HOST = '0.0.0.0';
 const PORT = 3000; //container port
 
 app.use(cors()); //for axios cross url access, so we can respond to fornt end requests
-app.use(express.static(path.join(__dirname, 'public'))); //just for some route tests
+app.use(express.static(path.join(__dirname, 'public'))); //just for a test form
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//database, pg pool
+//database, pg pool (located at ./dbConnection.js)
 const dbPool = require('./dbConnection');
 
 //basic test routes
@@ -59,7 +59,6 @@ app.post('/update', async (req, res) => {
         res.status(500).send('Erro ao atualizar usuário. Veirfique o log');
     }
 });
-
 
 app.post('/delete', async (req, res) => {
     const { nome } = req.body;
